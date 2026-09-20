@@ -118,6 +118,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [active, setActive] = useState(0);
   const [caseOpen, setCaseOpen] = useState(false);
+  const activeTreatment = treatments[active] ?? treatments[0];
+  if (!activeTreatment) return null;
   const move = useCallback((step: number) => {
     setActive((current) => (current + step + treatments.length) % treatments.length);
   }, []);
@@ -134,7 +136,7 @@ function Index() {
   return (
     <main className="gallery-shell min-h-screen overflow-hidden bg-background text-foreground">
       <div className="gallery-backdrop" aria-hidden="true">
-        <img src={treatments[active].image} alt="" />
+        <img src={activeTreatment.image} alt="" />
       </div>
       <header className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-5 pt-7 sm:px-8 sm:pt-10">
         <div>
@@ -222,18 +224,18 @@ function Index() {
           <div key={active} className="case-content grid animate-in fade-in-0 duration-500 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
             <div className="case-image-wrap min-h-[360px] overflow-hidden bg-muted lg:min-h-[670px]">
               <img
-                src={treatments[active].image}
-                alt={`${treatments[active].title} before and after result`}
+                src={activeTreatment.image}
+                alt={`${activeTreatment.title} before and after result`}
                 className="h-full w-full object-contain"
               />
             </div>
             <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">Patient case study</p>
               <DialogTitle className="mt-3 font-display text-4xl font-semibold leading-tight sm:text-5xl">
-                {treatments[active].title}
+                {activeTreatment.title}
               </DialogTitle>
               <DialogDescription className="mt-5 text-base leading-7 text-foreground">
-                {treatments[active].summary}
+                {activeTreatment.summary}
               </DialogDescription>
 
               <dl className="mt-7 grid gap-3 border-y border-border py-5 sm:grid-cols-2">
@@ -241,21 +243,21 @@ function Index() {
                   <Clock3 className="mt-0.5 size-5 shrink-0 text-primary" />
                   <div>
                     <dt className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Duration</dt>
-                    <dd className="mt-1 text-sm font-semibold">{treatments[active].duration}</dd>
+                    <dd className="mt-1 text-sm font-semibold">{activeTreatment.duration}</dd>
                   </div>
                 </div>
                 <div className="flex gap-3">
                   <Stethoscope className="mt-0.5 size-5 shrink-0 text-primary" />
                   <div>
                     <dt className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Doctor</dt>
-                    <dd className="mt-1 text-sm font-semibold leading-5">{treatments[active].doctors}</dd>
+                    <dd className="mt-1 text-sm font-semibold leading-5">{activeTreatment.doctors}</dd>
                   </div>
                 </div>
               </dl>
 
               <div className="mt-7">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Full case details</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">{treatments[active].details}</p>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">{activeTreatment.details}</p>
               </div>
 
               <div className="mt-8 flex items-center justify-between border-t border-border pt-5">
