@@ -1,2 +1,2 @@
-- [ ] Build reference-matched before/after vinyl gallery using all uploaded treatment images
-- [ ] Exclude settings and other extra controls
+- [x] Build reference-matched before/after vinyl gallery using all uploaded treatment images
+- [x] Exclude settings and other extra controls
