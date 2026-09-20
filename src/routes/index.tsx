@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 
 import { Button } from "@/components/ui/button";
 import vitiligoAsset from "@/assets/vitiligo.jpeg.asset.json";
@@ -97,7 +98,7 @@ function Index() {
                   zIndex: treatments.length - distance,
                   opacity: distance > 2 ? 0 : 1,
                   pointerEvents: offset === 0 ? "auto" : "none",
-                } as React.CSSProperties}
+                } as CSSProperties}
               >
                 <div className="gallery-card overflow-hidden rounded-md border border-border bg-card shadow-gallery">
                   <img
