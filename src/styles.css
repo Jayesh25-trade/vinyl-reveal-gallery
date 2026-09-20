@@ -149,9 +149,35 @@
 
 @layer components {
   .gallery-shell {
+    position: relative;
+    isolation: isolate;
     background-image:
       linear-gradient(to bottom, color-mix(in oklab, var(--background) 94%, transparent), var(--background)),
       repeating-linear-gradient(0deg, transparent 0 7px, color-mix(in oklab, var(--foreground) 3%, transparent) 8px);
+  }
+
+  .gallery-backdrop {
+    position: fixed;
+    inset: -3rem;
+    z-index: -2;
+    overflow: hidden;
+    opacity: 0.12;
+  }
+
+  .gallery-backdrop::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, var(--background) 72%, transparent);
+  }
+
+  .gallery-backdrop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(28px) saturate(0.7);
+    transform: scale(1.09);
+    transition: opacity 500ms ease;
   }
 
   .carousel-stage::after {
@@ -179,6 +205,11 @@
 
   .gallery-card {
     height: 100%;
+    transition: transform 240ms ease, box-shadow 240ms ease;
+  }
+
+  .gallery-card:hover {
+    transform: translateY(-4px);
   }
 
   .vinyl-slide[data-active="true"] .gallery-card {
@@ -191,6 +222,14 @@
     transform: scaleY(-1);
     opacity: 0.11;
     mask-image: linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 70%, transparent), transparent 78%);
+  }
+
+  .case-dialog {
+    overflow: hidden;
+  }
+
+  .case-image-wrap {
+    background-image: linear-gradient(145deg, var(--muted), var(--card));
   }
 }
 
@@ -207,5 +246,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vinyl-slide { transition-duration: 0.01ms; }
+  .vinyl-slide,
+  .gallery-card,
+  .gallery-backdrop img { transition-duration: 0.01ms; }
 }
