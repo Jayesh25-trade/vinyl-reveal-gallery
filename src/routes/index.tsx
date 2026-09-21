@@ -192,7 +192,15 @@ function Index() {
           </p>
         </div>
 
-        <div className="carousel-stage relative mt-8 h-[430px] w-full sm:h-[520px]" aria-live="polite">
+        <div
+          className="carousel-stage relative mt-8 h-[430px] w-full touch-pan-y select-none sm:h-[520px]"
+          aria-live="polite"
+          onPointerDown={onStagePointerDown}
+          onPointerMove={onStagePointerMove}
+          onPointerUp={onStagePointerUp}
+          onPointerCancel={onStagePointerCancel}
+          onPointerLeave={onStagePointerCancel}
+        >
           {treatments.map((treatment, index) => {
             let offset = index - active;
             if (offset > treatments.length / 2) offset -= treatments.length;
@@ -215,7 +223,13 @@ function Index() {
                 <Button
                   variant="ghost"
                   className="gallery-card h-full w-full overflow-hidden rounded-md border border-border bg-card p-0 shadow-gallery"
-                  onClick={() => setCaseOpen(true)}
+                  onClick={() => {
+                    if (dragMoved.current) {
+                      dragMoved.current = false;
+                      return;
+                    }
+                    setCaseOpen(true);
+                  }}
                   aria-label={`View full case details for ${treatment.title}`}
                 >
                   <img
