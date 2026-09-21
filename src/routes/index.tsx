@@ -260,7 +260,13 @@ function Index() {
                 <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">{activeTreatment.details}</p>
               </div>
 
-              <div className="mt-8 flex items-center justify-between border-t border-border pt-5">
+              <div className="mt-8">
+                <Button className="w-full" size="lg" onClick={() => onBookConsult()} aria-label="Book consultation">
+                  Book Consultation
+                </Button>
+              </div>
+
+              <div className="mt-5 flex items-center justify-between border-t border-border pt-5">
                 <Button variant="outline" size="icon" onClick={() => move(-1)} aria-label="Previous case">
                   <ChevronLeft />
                 </Button>
