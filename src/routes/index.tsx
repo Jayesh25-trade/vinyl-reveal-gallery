@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Clock3, Stethoscope } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-import type { CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -129,6 +129,38 @@ function Index() {
     // TODO: redirect to the booking flow once the destination is decided.
   }, []);
 
+  // Touch / pointer swipe support: horizontal drag moves the slides.
+  const dragStartX = useRef<number | null>(null);
+  const dragMoved = useRef(false);
+
+  const onStagePointerDown = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    dragStartX.current = event.clientX;
+    dragMoved.current = false;
+  }, []);
+
+  const onStagePointerMove = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
+    if (dragStartX.current === null) return;
+    if (Math.abs(event.clientX - dragStartX.current) > 10) {
+      dragMoved.current = true;
+    }
+  }, []);
+
+  const onStagePointerUp = useCallback(
+    (event: ReactPointerEvent<HTMLDivElement>) => {
+      if (dragStartX.current === null) return;
+      const delta = event.clientX - dragStartX.current;
+      dragStartX.current = null;
+      if (Math.abs(delta) > 50) {
+        move(delta < 0 ? 1 : -1);
+      }
+    },
+    [move],
+  );
+
+  const onStagePointerCancel = useCallback(() => {
+    dragStartX.current = null;
+  }, []);
+
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === "ArrowLeft") move(-1);
@@ -160,7 +192,15 @@ function Index() {
           </p>
         </div>
 
-        <div className="carousel-stage relative mt-8 h-[430px] w-full sm:h-[520px]" aria-live="polite">
+        <div
+          className="carousel-stage relative mt-8 h-[430px] w-full touch-pan-y select-none sm:h-[520px]"
+          aria-live="polite"
+          onPointerDown={onStagePointerDown}
+          onPointerMove={onStagePointerMove}
+          onPointerUp={onStagePointerUp}
+          onPointerCancel={onStagePointerCancel}
+          onPointerLeave={onStagePointerCancel}
+        >
           {treatments.map((treatment, index) => {
             let offset = index - active;
             if (offset > treatments.length / 2) offset -= treatments.length;
@@ -183,7 +223,13 @@ function Index() {
                 <Button
                   variant="ghost"
                   className="gallery-card h-full w-full overflow-hidden rounded-md border border-border bg-card p-0 shadow-gallery"
-                  onClick={() => setCaseOpen(true)}
+                  onClick={() => {
+                    if (dragMoved.current) {
+                      dragMoved.current = false;
+                      return;
+                    }
+                    setCaseOpen(true);
+                  }}
                   aria-label={`View full case details for ${treatment.title}`}
                 >
                   <img
