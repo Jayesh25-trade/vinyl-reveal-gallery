@@ -124,6 +124,11 @@ function Index() {
     setActive((current) => (current + step + treatments.length) % treatments.length);
   }, []);
 
+  // Redirect destination to be wired up by the user.
+  const onBookConsult = useCallback(() => {
+    // TODO: redirect to the booking flow once the destination is decided.
+  }, []);
+
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === "ArrowLeft") move(-1);
