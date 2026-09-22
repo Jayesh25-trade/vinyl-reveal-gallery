@@ -17,7 +17,7 @@ import woundAsset from "@/assets/nonhealingwound.jpeg.asset.json";
 import molluscumAsset from "@/assets/molluscum.jpeg.asset.json";
 import mouthAsset from "@/assets/MOUTH.jpeg.asset.json";
 import psoriasisAsset from "@/assets/AHRPTWmyYFIMTOwkuVBoJP7qihtwkx2BSHnQsDTn5K6MnEahRwIZvyIK17CNQgGG0eoLPmnvEfJxOAiZsZURcSelCeRZcPKGkZZOz9SbzFnLQhuhnUGdxPMWC1LALSpHNyLYIuU8BdnjySGK7AYw1080-h1366-k-no.jpg.asset.json";
-import vitiligoTreatmentAsset from "@/assets/AHRPTWlD4duMACYTX4RhjkSYuskPTF9aeXWgubRQEt5pg1OunusCxu3b_DaSoeDb0YdMA6vc2MvV1RnATvVX3VtvjPa3ma-wH56aqeNb_XsgHmEww952ojJl1Ai9_5TOR3ewEWGb5jVItYZtILw1024-h1280-k-no.jpg.asset.json";
+import vitiligoTreatmentAsset from "@/assets/AHRPTWlD4duMACYTX4RhjkSYuskPTF9aeXWgubRQEt5pg1OunusinCxu3b_DaSoeDb0YdMA6vc2MvV1RnATvVX3VtvjPa3ma-wH56aqeNb_XsgHmEww952ojJl1Ai9_5TOR3ewEWGb5jVItYZtILw1024-h1280-k-no.jpg.asset.json";
 import fungalAsset from "@/assets/AHRPTWmP06Fx4ZwxlDU_HZfQj0jdB1WlUuBbZpYlNVchT1aF3HARUpVz9TJtLjwlPasdXBEByJtOhA1n_wtcJThky8PnDX7eCSc9J1COrlTWNWekxLhjOikwXRO_xNSbGXXCZJuXCV42QfK1-iJ_w1024-h1280-k-no.jpg.asset.json";
 
 type Concern =
