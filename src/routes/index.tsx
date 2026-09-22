@@ -17,7 +17,7 @@ import woundAsset from "@/assets/nonhealingwound.jpeg.asset.json";
 import molluscumAsset from "@/assets/molluscum.jpeg.asset.json";
 import mouthAsset from "@/assets/MOUTH.jpeg.asset.json";
 import psoriasisAsset from "@/assets/AHRPTWmyYFIMTOwkuVBoJP7qihtwkx2BSHnQsDTn5K6MnEahRwIZvyIK17CNQgGG0eoLPmnvEfJxOAiZsZURcSelCeRZcPKGkZZOz9SbzFnLQhuhnUGdxPMWC1LALSpHNyLYIuU8BdnjySGK7AYw1080-h1366-k-no.jpg.asset.json";
-import vitiligoTreatmentAsset from "@/assets/AHRPTWlD4duMACYTX4RhjkSYuskPTF9aeXWgubRQEt5pg1OunusCxu3b_DaSoeDb0YdMA6vc2MvV1RnATvVX3VtvjPa3ma-wH56aqeNb_XsgHmEww952ojJl1Ai9_5TOR3ewEWGb5jVItYZtILw1024-h1280-k-no.jpg.asset.json";
+import vitiligoTreatmentAsset from "@/assets/AHRPTWlD4duMACYTX4RhjkSYuskPTF9aeXWgubRQEt5pg1OunusinCxu3b_DaSoeDb0YdMA6vc2MvV1RnATvVX3VtvjPa3ma-wH56aqeNb_XsgHmEww952ojJl1Ai9_5TOR3ewEWGb5jVItYZtILw1024-h1280-k-no.jpg.asset.json";
 import fungalAsset from "@/assets/AHRPTWmP06Fx4ZwxlDU_HZfQj0jdB1WlUuBbZpYlNVchT1aF3HARUpVz9TJtLjwlPasdXBEByJtOhA1n_wtcJThky8PnDX7eCSc9J1COrlTWNWekxLhjOikwXRO_xNSbGXXCZJuXCV42QfK1-iJ_w1024-h1280-k-no.jpg.asset.json";
 
 type Concern =
@@ -392,15 +392,15 @@ function Index() {
 
       <Dialog open={caseOpen} onOpenChange={setCaseOpen}>
         <DialogContent className="case-dialog max-h-[92vh] w-[calc(100%-1.5rem)] max-w-6xl overflow-y-auto border-border bg-card p-0 shadow-gallery sm:rounded-md">
-          <div key={active} className="case-content grid animate-in fade-in-0 duration-500 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-            <div className="case-image-wrap min-h-[360px] overflow-hidden bg-muted lg:min-h-[670px]">
+          <div key={active} className="case-content grid animate-in fade-in-0 duration-500 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="case-image-wrap order-1 min-h-[360px] overflow-hidden bg-muted lg:order-2 lg:min-h-[670px]">
               <img
                 src={activeTreatment.image}
                 alt={`${activeTreatment.title} before and after result`}
                 className="h-full w-full object-contain"
               />
             </div>
-            <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
+            <div className="order-2 flex flex-col justify-center p-6 sm:p-10 lg:order-1 lg:p-14">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">Patient case study</p>
               <DialogTitle className="mt-3 font-display text-4xl font-semibold leading-tight sm:text-5xl">
                 {activeTreatment.title}
