@@ -392,8 +392,8 @@ function Index() {
 
       <Dialog open={caseOpen} onOpenChange={setCaseOpen}>
         <DialogContent className="case-dialog max-h-[92vh] w-[calc(100%-1.5rem)] max-w-6xl overflow-y-auto border-border bg-card p-0 shadow-gallery sm:rounded-md">
-          <div key={active} className="case-content grid animate-in fade-in-0 duration-500 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-            <div className="case-image-wrap min-h-[360px] overflow-hidden bg-muted lg:min-h-[670px]">
+          <div key={active} className="case-content grid animate-in fade-in-0 duration-500 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            <div className="case-image-wrap order-1 min-h-[360px] overflow-hidden bg-muted lg:order-2 lg:min-h-[670px]">
               <img
                 src={activeTreatment.image}
                 alt={`${activeTreatment.title} before and after result`}
