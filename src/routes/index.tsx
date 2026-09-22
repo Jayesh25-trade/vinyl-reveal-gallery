@@ -400,7 +400,7 @@ function Index() {
                 className="h-full w-full object-contain"
               />
             </div>
-            <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
+            <div className="order-2 flex flex-col justify-center p-6 sm:p-10 lg:order-1 lg:p-14">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">Patient case study</p>
               <DialogTitle className="mt-3 font-display text-4xl font-semibold leading-tight sm:text-5xl">
                 {activeTreatment.title}
